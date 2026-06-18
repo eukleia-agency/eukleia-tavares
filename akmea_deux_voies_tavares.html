@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Akméa · Deux voies — Sandy Tavares, T2 Saint-Arnoult</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Archivo+Expanded:wght@600;700;800&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#ECEDE7;
+    --paper-2:#E4E6DF;
+    --surface:#F7F8F4;
+    --ink:#10302F;
+    --ink-deep:#0A2322;
+    --petrol:#15756C;
+    --petrol-deep:#0F564F;
+    --petrol-soft:#6E9D96;
+    --clay:#C66A4E;
+    --clay-bright:#E08566;
+    --muted:#586460;
+    --muted-2:#7C857F;
+    --hairline:#D3D6CE;
+    --hairline-strong:#C2C6BC;
+    --on-dark:#EAEDE6;
+    --on-dark-muted:#9BB4AF;
+    --neutral-card:#E7E8E1;
+    --neutral-ink:#414b47;
+    --r:14px;
+    --r-lg:22px;
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Inter",system-ui,sans-serif;
+    font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+  h1,h2,h3{margin:0;font-family:"Archivo",sans-serif;line-height:1.06;letter-spacing:-0.02em;}
+  p{margin:0;}
+  a{color:inherit;}
+  .eyebrow{
+    font-family:"Space Mono",monospace;font-size:12px;font-weight:700;
+    letter-spacing:0.22em;text-transform:uppercase;color:var(--petrol);
+    display:inline-flex;align-items:center;gap:9px;
+  }
+  .eyebrow svg{display:block;}
+  .mono{font-family:"Space Mono",monospace;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:var(--ink-deep);color:var(--on-dark);
+    position:relative;overflow:hidden;
+    border-bottom:1px solid #07211f;
+  }
+  .hero::after{content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(120% 90% at 88% -10%, rgba(21,117,108,.30), transparent 60%);}
+  .hero-inner{position:relative;z-index:2;padding:34px 28px 50px;max-width:var(--maxw);margin:0 auto;}
+  .brandrow{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+  .wordmark{display:flex;align-items:center;gap:13px;}
+  .peak{width:30px;height:24px;flex:none;}
+  .peak path{fill:none;stroke:var(--clay-bright);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;}
+  .wordmark .name{font-family:"Archivo Expanded",sans-serif;font-weight:800;font-size:23px;letter-spacing:0.14em;color:var(--on-dark);}
+  .brand-tag{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:0.16em;color:var(--on-dark-muted);text-transform:uppercase;text-align:right;line-height:1.5;}
+
+  .hero-head{margin-top:46px;max-width:760px;}
+  .hero-head .kick{font-family:"Space Mono",monospace;font-size:12.5px;letter-spacing:0.2em;text-transform:uppercase;color:var(--petrol-soft);margin-bottom:20px;}
+  .hero-head h1{font-size:clamp(33px,5.1vw,60px);color:#fff;font-weight:700;}
+  .hero-head h1 .hl{color:var(--clay-bright);font-style:italic;font-family:"Archivo",sans-serif;}
+  .hero-sub{margin-top:20px;font-size:18px;color:var(--on-dark-muted);max-width:600px;}
+
+  .prop-line{margin-top:30px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+  .prop-line .who{font-weight:600;color:var(--on-dark);font-size:15px;}
+  .chip{font-family:"Space Mono",monospace;font-size:11.5px;letter-spacing:0.04em;color:var(--on-dark-muted);
+    border:1px solid #1f4744;border-radius:999px;padding:5px 11px;background:rgba(21,117,108,.10);}
+
+  /* curve */
+  .curvewrap{margin-top:38px;position:relative;}
+  .curve-cap{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;}
+  .curve-cap .lbl{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--on-dark-muted);}
+  svg.curve{width:100%;height:auto;display:block;}
+  .stats{display:flex;flex-wrap:wrap;gap:0;margin-top:8px;border-top:1px solid #1c4340;}
+  .stat{flex:1 1 130px;padding:16px 18px 4px;border-right:1px solid #1c4340;}
+  .stat:last-child{border-right:none;}
+  .stat .v{font-family:"Space Mono",monospace;font-size:23px;font-weight:700;color:#fff;letter-spacing:-0.01em;}
+  .stat .k{font-family:"Space Mono",monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--on-dark-muted);margin-top:3px;}
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:78px 0;}
+  .sec-head{max-width:640px;margin-bottom:38px;}
+  .sec-head h2{font-size:clamp(26px,3.4vw,38px);margin-top:16px;font-weight:700;}
+  .sec-head .lede{margin-top:16px;color:var(--muted);font-size:18px;}
+
+  .bridge{background:var(--paper);border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline);}
+  .bridge-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:48px;align-items:center;}
+  .bridge-card{background:var(--surface);border:1px solid var(--hairline);border-radius:var(--r-lg);padding:30px 32px;}
+  .step{display:flex;gap:16px;align-items:flex-start;padding:14px 0;border-bottom:1px dashed var(--hairline);}
+  .step:last-child{border-bottom:none;}
+  .step .n{font-family:"Archivo Expanded",sans-serif;font-weight:700;font-size:14px;color:var(--petrol);flex:none;width:34px;}
+  .step .t{font-size:15.5px;color:var(--ink);}
+  .step .t b{font-weight:600;}
+  .step.now .n{color:var(--clay);}
+  .pill-done{display:inline-block;font-family:"Space Mono",monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--petrol);background:rgba(21,117,108,.10);border:1px solid #bcd3ce;border-radius:999px;padding:2px 8px;margin-left:8px;vertical-align:middle;}
+
+  /* ---------- LA QUESTION : deux profils ---------- */
+  .question{background:var(--paper-2);}
+  .profiles{display:grid;grid-template-columns:1fr 1fr;gap:26px;}
+  .profile{border-radius:var(--r-lg);padding:34px 32px;border:1px solid var(--hairline);position:relative;background:var(--surface);}
+  .profile.b{border-color:#bcd3ce;background:linear-gradient(180deg,#F2F7F5,#EAF2EF);box-shadow:0 1px 0 #d9e6e1;}
+  .profile .tag{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted-2);}
+  .profile.b .tag{color:var(--petrol);}
+  .profile h3{font-size:25px;margin-top:12px;font-weight:700;}
+  .profile .role{font-family:"Space Mono",monospace;font-size:12.5px;color:var(--muted);margin-top:6px;letter-spacing:0.02em;}
+  .profile p{margin-top:18px;color:var(--muted);font-size:15.5px;}
+  .profile.b p{color:#37514c;}
+  .profile .verdict{margin-top:22px;padding-top:18px;border-top:1px solid var(--hairline);font-size:14.5px;font-weight:500;color:var(--ink);}
+  .profile.b .verdict{border-top-color:#cfe0db;}
+  .reco-flag{position:absolute;top:-12px;right:22px;display:inline-flex;align-items:center;gap:7px;background:var(--clay);color:#fff;font-family:"Space Mono",monospace;font-size:10.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:6px 12px;border-radius:999px;box-shadow:0 4px 14px rgba(198,106,78,.32);}
+  .reco-flag svg path{stroke:#fff;}
+
+  /* ---------- COMPARATEUR ---------- */
+  .compare{background:var(--ink-deep);color:var(--on-dark);}
+  .compare .sec-head h2{color:#fff;}
+  .compare .sec-head .lede{color:var(--on-dark-muted);}
+  .compare .eyebrow{color:var(--petrol-soft);}
+
+  .scen-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:30px;}
+  .scen-label{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--on-dark-muted);}
+  .seg{display:inline-flex;background:#0e2c2a;border:1px solid #1d4541;border-radius:999px;padding:4px;}
+  .seg button{font-family:"Inter",sans-serif;font-size:14px;font-weight:500;color:var(--on-dark-muted);background:none;border:none;cursor:pointer;padding:8px 18px;border-radius:999px;transition:all .18s;white-space:nowrap;}
+  .seg button[aria-pressed="true"]{background:var(--petrol);color:#fff;font-weight:600;}
+  .seg button:focus-visible{outline:2px solid var(--clay-bright);outline-offset:2px;}
+  .scen-meta{font-family:"Space Mono",monospace;font-size:12px;color:var(--on-dark-muted);}
+  .scen-meta b{color:#fff;}
+
+  .cols{display:grid;grid-template-columns:1fr 1.08fr;gap:24px;align-items:stretch;}
+  .vcard{border-radius:var(--r-lg);padding:30px 30px 26px;display:flex;flex-direction:column;}
+  .vcard.a{background:#10302e;border:1px solid #244c48;}
+  .vcard.b{background:linear-gradient(180deg,#14403a,#103330);border:1.5px solid var(--petrol);position:relative;}
+  .vcard .vtag{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--on-dark-muted);}
+  .vcard.b .vtag{color:#7fd9cd;}
+  .vcard h3{font-size:22px;margin-top:9px;color:#fff;font-weight:700;}
+  .vcard .vsub{font-size:13.5px;color:var(--on-dark-muted);margin-top:5px;min-height:20px;}
+
+  .bignum{font-family:"Space Mono",monospace;font-weight:700;font-size:clamp(34px,4.4vw,46px);color:#fff;letter-spacing:-0.02em;margin-top:22px;line-height:1;}
+  .bignum-k{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--on-dark-muted);margin-top:9px;}
+  .vcard.b .bignum{color:#bff0e8;}
+
+  .y1note{font-family:"Space Mono",monospace;font-size:12px;color:var(--on-dark-muted);margin-top:12px;}
+  .y1note b{color:#cfeee8;}
+
+  .vmeta{margin-top:20px;border-top:1px solid #2a534e;padding-top:16px;display:flex;flex-direction:column;gap:11px;}
+  .vmeta .li{display:flex;gap:11px;align-items:flex-start;font-size:14px;color:var(--on-dark);}
+  .vmeta .li .ic{flex:none;width:17px;height:17px;margin-top:2px;}
+  .vmeta .li .ic svg{width:17px;height:17px;display:block;}
+  .vmeta .li span b{font-weight:600;}
+  .vmeta .li .sub{color:var(--on-dark-muted);font-size:13px;}
+
+  .modebar{margin-top:20px;}
+  .modebar .ml{font-family:"Space Mono",monospace;font-size:10.5px;letter-spacing:0.13em;text-transform:uppercase;color:var(--on-dark-muted);margin-bottom:9px;}
+  .seg.mini button{padding:7px 14px;font-size:13px;}
+  .mode-desc{font-size:13px;color:var(--on-dark-muted);margin-top:11px;min-height:34px;}
+
+  .delta{margin-top:auto;}
+  .delta-inner{margin-top:22px;background:rgba(198,106,78,.12);border:1px solid rgba(224,133,102,.35);border-radius:12px;padding:13px 16px;display:flex;align-items:center;gap:12px;}
+  .delta-inner .d-v{font-family:"Space Mono",monospace;font-weight:700;font-size:20px;color:var(--clay-bright);white-space:nowrap;}
+  .delta-inner .d-t{font-size:13px;color:#e6cfc6;}
+
+  /* 3 ans */
+  .cumul{margin-top:34px;background:#10302e;border:1px solid #244c48;border-radius:var(--r-lg);padding:26px 30px;}
+  .cumul .ch{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;margin-bottom:20px;}
+  .cumul .ch .t{font-family:"Archivo",sans-serif;font-weight:600;font-size:17px;color:#fff;}
+  .cumul .ch .s{font-family:"Space Mono",monospace;font-size:11.5px;color:var(--on-dark-muted);}
+  .bar{margin:15px 0;}
+  .bar .bl{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:7px;}
+  .bar .bl .name{font-size:13.5px;color:var(--on-dark);}
+  .bar .bl .val{font-family:"Space Mono",monospace;font-weight:700;font-size:15px;color:#fff;}
+  .track{height:13px;background:#0c2624;border-radius:999px;overflow:hidden;}
+  .fill{height:100%;border-radius:999px;width:0;transition:width .6s cubic-bezier(.2,.7,.2,1);}
+  .fill.a{background:linear-gradient(90deg,#3c6f69,#5b918a);}
+  .fill.b{background:linear-gradient(90deg,var(--petrol),#3fb3a6);}
+
+  .honesty{margin-top:24px;display:flex;gap:13px;align-items:flex-start;font-size:13.5px;color:var(--on-dark-muted);background:#0e2c2a;border:1px solid #1d4541;border-radius:12px;padding:16px 18px;}
+  .honesty svg{flex:none;margin-top:1px;}
+
+  /* ---------- AGENCE DÉTAIL ---------- */
+  .agence{background:var(--paper);}
+  .ag-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;}
+  .ag-card{background:var(--surface);border:1px solid var(--hairline);border-radius:var(--r-lg);padding:32px 32px 30px;}
+  .ag-card .price{font-family:"Space Mono",monospace;font-weight:700;color:var(--petrol);font-size:14px;letter-spacing:0.04em;}
+  .ag-card h3{font-size:23px;margin-top:8px;font-weight:700;}
+  .ag-card .desc{color:var(--muted);font-size:15px;margin-top:14px;}
+  .feat{list-style:none;padding:0;margin:20px 0 0;}
+  .feat li{display:flex;gap:12px;align-items:flex-start;padding:9px 0;border-top:1px solid var(--hairline);font-size:14.5px;}
+  .feat li:first-child{border-top:none;}
+  .feat .dot{flex:none;width:18px;height:18px;margin-top:1px;}
+  .feat .dot svg{width:18px;height:18px;display:block;}
+  .pillars{display:flex;flex-direction:column;gap:0;margin-top:18px;}
+  .pillar{padding:14px 0;border-top:1px solid var(--hairline);}
+  .pillar:first-child{border-top:none;}
+  .pillar .pt{font-weight:600;font-size:15px;display:flex;align-items:center;gap:9px;}
+  .pillar .pt .num{font-family:"Space Mono",monospace;color:var(--petrol);font-size:12px;}
+  .pillar .pd{color:var(--muted);font-size:13.5px;margin-top:4px;}
+
+  .frontiere{margin-top:30px;background:var(--ink-deep);color:var(--on-dark);border-radius:var(--r-lg);padding:30px 34px;display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center;}
+  .frontiere .fl{font-family:"Archivo Expanded",sans-serif;font-weight:700;font-size:15px;letter-spacing:0.04em;color:#7fd9cd;text-transform:uppercase;writing-mode:vertical-rl;transform:rotate(180deg);}
+  .frontiere .ft h3{color:#fff;font-size:20px;}
+  .frontiere .ft p{color:var(--on-dark-muted);font-size:14.5px;margin-top:12px;}
+  .frontiere .ft .keep{color:#bff0e8;font-weight:600;}
+
+  /* ---------- CONCIERGERIE HONNÊTE ---------- */
+  .deleg{background:var(--paper-2);}
+  .deleg-card{background:var(--neutral-card);border:1px solid var(--hairline-strong);border-radius:var(--r-lg);padding:34px 36px;max-width:760px;}
+  .deleg-card h3{font-size:22px;font-weight:700;color:var(--neutral-ink);}
+  .deleg-card p{color:var(--muted);font-size:15.5px;margin-top:14px;}
+
+  /* ---------- DÉCIDER ---------- */
+  .decide{background:var(--paper);}
+  .qrows{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--hairline);}
+  .qrow{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:18px;padding:20px 0;border-bottom:1px solid var(--hairline);align-items:center;}
+  .qrow .q{font-weight:600;font-size:16px;}
+  .qrow .opt{font-size:14px;color:var(--muted);display:flex;gap:9px;align-items:baseline;}
+  .qrow .opt .tagm{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:2px 7px;border-radius:5px;flex:none;}
+  .qrow .opt.a .tagm{background:#e2e3dc;color:var(--neutral-ink);}
+  .qrow .opt.b .tagm{background:rgba(21,117,108,.13);color:var(--petrol);}
+  .qhdr{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:18px;padding-bottom:12px;}
+  .qhdr .h{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:0.13em;text-transform:uppercase;color:var(--muted-2);}
+  .qhdr .h.bb{color:var(--petrol);}
+
+  /* ---------- CTA ---------- */
+  .cta{background:var(--ink-deep);color:var(--on-dark);text-align:left;}
+  .cta-inner{display:grid;grid-template-columns:1.2fr 1fr;gap:46px;align-items:center;}
+  .cta h2{font-size:clamp(28px,3.6vw,42px);color:#fff;font-weight:700;}
+  .cta .cl{margin-top:18px;color:var(--on-dark-muted);font-size:17px;max-width:460px;}
+  .next{display:inline-flex;align-items:center;gap:11px;margin-top:26px;background:var(--petrol);color:#fff;font-weight:600;font-size:15px;border-radius:999px;padding:13px 24px;}
+  .next .nstep{font-family:"Space Mono",monospace;font-size:12px;color:#bff0e8;letter-spacing:0.04em;}
+  .contact{background:#10302e;border:1px solid #244c48;border-radius:var(--r-lg);padding:28px 30px;}
+  .contact .cn{font-weight:600;color:#fff;font-size:17px;}
+  .contact .cr{font-family:"Space Mono",monospace;font-size:13.5px;color:var(--on-dark);margin-top:12px;display:flex;flex-direction:column;gap:7px;}
+  .contact .cr a{color:#7fd9cd;text-decoration:none;}
+
+  footer{background:var(--paper);border-top:1px solid var(--hairline);padding:30px 0 40px;}
+  .foot{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;}
+  .foot .fw{font-family:"Archivo Expanded",sans-serif;font-weight:800;letter-spacing:0.14em;font-size:15px;color:var(--ink);}
+  .foot .fn{font-family:"Space Mono",monospace;font-size:11.5px;color:var(--muted-2);max-width:560px;line-height:1.6;}
+
+  /* reveal */
+  .rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1);}
+  .rv.in{opacity:1;transform:none;}
+
+  :focus-visible{outline:2px solid var(--petrol);outline-offset:3px;}
+
+  @media (max-width:860px){
+    .bridge-grid,.profiles,.cols,.ag-grid,.cta-inner{grid-template-columns:1fr;gap:22px;}
+    .frontiere{grid-template-columns:1fr;}
+    .frontiere .fl{writing-mode:horizontal-tb;transform:none;}
+    .qrow,.qhdr{grid-template-columns:1fr;gap:8px;}
+    .qhdr{display:none;}
+    .qrow .opt{padding-left:2px;}
+    section{padding:60px 0;}
+  }
+  @media (max-width:560px){
+    body{font-size:16px;}
+    .wrap{padding:0 20px;}
+    .hero-inner,.hero-head{padding-left:0;padding-right:0;}
+    .hero-inner{padding:26px 20px 40px;}
+    .stat{flex-basis:50%;border-bottom:1px solid #1c4340;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;}
+    .rv{opacity:1;transform:none;}
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== HERO ===================== -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="brandrow">
+      <div class="wordmark">
+        <svg class="peak" viewBox="0 0 30 24" aria-hidden="true"><path d="M3 21 L15 4 L27 21"/></svg>
+        <span class="name">AKMÉA</span>
+      </div>
+      <div class="brand-tag">Agence · marketing<br>& revenue management courte durée</div>
+    </div>
+
+    <div class="hero-head">
+      <div class="kick">Préparé pour Sandy Tavares · Juin 2026</div>
+      <h1>L'analyse, vous l'avez déjà.<br>Reste à choisir <span class="hl">qui pilote le sommet.</span></h1>
+      <p class="hero-sub">Votre T2 a un pic de demande très net en août. Deux façons de le transformer en annonce qui performe — selon que vous préférez déléguer, ou garder la main.</p>
+    </div>
+
+    <div class="prop-line">
+      <span class="who">T2 · 15 avenue de la Vallée, 14800 Saint-Arnoult</span>
+      <span class="chip">2–4 voyageurs</span>
+      <span class="chip">Terrasse rez-de-jardin</span>
+      <span class="chip">Piscine juin–sept</span>
+      <span class="chip">Rénové</span>
+    </div>
+
+    <div class="curvewrap">
+      <div class="curve-cap">
+        <span class="lbl">Revenus bruts hébergement — projection sur 12 mois</span>
+        <span class="lbl" style="color:var(--clay-bright)">▲ Apex · Août</span>
+      </div>
+      <svg class="curve" id="curve" viewBox="0 0 1000 250" preserveAspectRatio="none" aria-label="Courbe de revenus mensuels projetés, sommet en août"></svg>
+      <div class="stats">
+        <div class="stat"><div class="v" id="st-brut">—</div><div class="k">Brut / an · scénario probable</div></div>
+        <div class="stat"><div class="v" id="st-occ">—</div><div class="k">Taux d'occupation</div></div>
+        <div class="stat"><div class="v" id="st-adr">—</div><div class="k">ADR moyen / nuit</div></div>
+        <div class="stat"><div class="v" id="st-revpar">—</div><div class="k">RevPAR</div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== LA PREMIÈRE MARCHE ===================== -->
+<section class="bridge">
+  <div class="wrap bridge-grid">
+    <div class="rv">
+      <div class="eyebrow"><svg width="16" height="13" viewBox="0 0 16 13" aria-hidden="true"><path d="M2 11 L8 3 L14 11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>La continuité</div>
+      <h2 style="font-size:clamp(25px,3.2vw,34px);margin-top:16px;font-weight:700;">L'estimation que vous avez reçue était déjà la première marche.</h2>
+      <p style="margin-top:18px;color:var(--muted);font-size:17px;">Ce n'était pas qu'un chiffre : c'était le diagnostic complet de votre bien — marché local, comparables réels, projection saisonnière. Ce travail est commun aux deux voies qui suivent. La vraie question n'est donc pas <em>combien</em>, mais <strong>qui tient le moteur ensuite.</strong></p>
+    </div>
+    <div class="bridge-card rv">
+      <div class="step"><div class="n">01</div><div class="t"><b>Analyse &amp; diagnostic</b> — marché, comparables, projection de revenus<span class="pill-done">✓ Vous l'avez</span></div></div>
+      <div class="step now"><div class="n">02</div><div class="t"><b>Le choix</b> — déléguer l'exploitation, ou la garder en main</div></div>
+      <div class="step"><div class="n">03</div><div class="t"><b>L'exécution</b> — mise en ligne, pilotage tarifaire, performance</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== LA QUESTION ===================== -->
+<section class="question">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow"><svg width="16" height="13" viewBox="0 0 16 13" aria-hidden="true"><path d="M2 11 L8 3 L14 11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Une seule question</div>
+      <h2>Quel propriétaire êtes-vous ?</h2>
+      <p class="lede">Pas une question de budget, mais de rôle. Les deux voies mènent à une annonce performante — elles diffèrent par votre niveau d'implication.</p>
+    </div>
+    <div class="profiles">
+      <div class="profile a rv">
+        <div class="tag">Voie A · Conciergerie</div>
+        <h3>Le propriétaire serein</h3>
+        <div class="role">« Je confie les clés, je n'y pense plus. »</div>
+        <p>Vous ne voulez aucune charge mentale : ni messages voyageurs, ni check-in, ni ménage à coordonner. Votre temps vaut plus que la marge, et la tranquillité totale a un prix que vous acceptez de payer.</p>
+        <div class="verdict">→ La conciergerie gère tout, de A à Z, contre une commission récurrente.</div>
+      </div>
+      <div class="profile b rv">
+        <div class="reco-flag"><svg width="13" height="11" viewBox="0 0 16 13" aria-hidden="true"><path d="M2 11 L8 3 L14 11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Notre métier</div>
+        <div class="tag">Voie B · Agence</div>
+        <h3>Le propriétaire aux commandes</h3>
+        <div class="role">« Je garde la main — donnez-moi le moteur. »</div>
+        <p>Vous voulez rester maître de votre bien et de votre relation voyageur, sans pour autant tâtonner sur les prix et la mise en marché. Vous gardez l'opérationnel (ou un prestataire que vous choisissez) — et vous gardez la marge.</p>
+        <div class="verdict">→ L'agence crée, optimise et pilote l'annonce ; vous restez aux commandes.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== LE COMPARATEUR ===================== -->
+<section class="compare">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow"><svg width="16" height="13" viewBox="0 0 16 13" aria-hidden="true"><path d="M2 11 L8 3 L14 11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Le comparateur</div>
+      <h2>Ce que vous gardez, selon la voie.</h2>
+      <p class="lede">Vos chiffres, pas des moyennes. Choisissez un scénario : les deux voies se recalculent.</p>
+    </div>
+
+    <div class="scen-row rv">
+      <span class="scen-label">Scénario</span>
+      <div class="seg" role="group" aria-label="Choix du scénario">
+        <button data-scen="plancher" aria-pressed="false">Prudent</button>
+        <button data-scen="central" aria-pressed="true">Probable</button>
+        <button data-scen="plafond" aria-pressed="false">Favorable</button>
+      </div>
+      <span class="scen-meta" id="scen-meta"></span>
+    </div>
+
+    <div class="cols">
+      <!-- VOIE A -->
+      <div class="vcard a rv">
+        <div class="vtag">Voie A · Déléguer</div>
+        <h3>Conciergerie</h3>
+        <div class="vsub">Tout est géré pour vous.</div>
+        <div class="bignum" id="a-net">—</div>
+        <div class="bignum-k">Net propriétaire / an</div>
+        <div class="y1note">&nbsp;</div>
+        <div class="vmeta">
+          <div class="li"><span class="ic"><svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7.3" stroke="#5b918a" stroke-width="1.5"/><path d="M9 5.4v4l2.6 1.6" stroke="#5b918a" stroke-width="1.5" stroke-linecap="round"/></svg></span><span><b>Effort : zéro.</b> <span class="sub">Mise en marché, accueil, ménage, maintenance, reporting.</span></span></div>
+          <div class="li"><span class="ic"><svg viewBox="0 0 18 18" fill="none"><path d="M3 13.5 L7.5 9 L10.5 12 L15 6" stroke="#5b918a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Coût : <b id="a-comm">—</b> de commission / an <span class="sub">— récurrente, prélevée sur chaque réservation, et qui monte avec le chiffre d'affaires.</span></span></div>
+        </div>
+      </div>
+
+      <!-- VOIE B -->
+      <div class="vcard b rv">
+        <div class="vtag">Voie B · Garder la main</div>
+        <h3>Agence Akméa</h3>
+        <div class="vsub">Vous pilotez ; on tient le moteur.</div>
+        <div class="bignum" id="b-net">—</div>
+        <div class="bignum-k">Net propriétaire / an <span id="b-net-tag" style="text-transform:none;letter-spacing:0;color:#7fd9cd"></span></div>
+        <div class="y1note" id="b-y1">—</div>
+
+        <div class="modebar">
+          <div class="ml">Après le lancement, vous choisissez</div>
+          <div class="seg mini" role="group" aria-label="Mode après lancement">
+            <button data-mode="autonome" aria-pressed="false">Autonome</button>
+            <button data-mode="abonnement" aria-pressed="true">Abonnement</button>
+          </div>
+          <div class="mode-desc" id="mode-desc"></div>
+        </div>
+
+        <div class="vmeta">
+          <div class="li"><span class="ic"><svg viewBox="0 0 18 18" fill="none"><path d="M9 2 L11 6.5 L16 7 L12.5 10.3 L13.5 15 L9 12.6 L4.5 15 L5.5 10.3 L2 7 L7 6.5 Z" stroke="#7fd9cd" stroke-width="1.3" stroke-linejoin="round"/></svg></span><span>Lancement : <b>890 € une fois</b> <span class="sub">— création, paramétrage, stratégie tarifaire, diffusion. L'estimation (390 €) est incluse et déduite.</span></span></div>
+          <div class="li"><span class="ic"><svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7.3" stroke="#7fd9cd" stroke-width="1.5"/><path d="M6 9h6M9 6v6" stroke="#7fd9cd" stroke-width="1.5" stroke-linecap="round"/></svg></span><span><b>Vous tenez l'opérationnel</b> <span class="sub">— ou un prestataire que vous choisissez. Vous gardez la relation voyageur.</span></span></div>
+        </div>
+
+        <div class="delta">
+          <div class="delta-inner">
+            <span class="d-v" id="delta-v">—</span>
+            <span class="d-t" id="delta-t">de plus pour vous, chaque année, vs déléguer.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 ANS -->
+    <div class="cumul rv">
+      <div class="ch">
+        <span class="t">Et sur 3 ans ?</span>
+        <span class="s">Net cumulé · le one-shot s'amortit, la commission se répète.</span>
+      </div>
+      <div class="bar">
+        <div class="bl"><span class="name">Voie A — Déléguer</span><span class="val" id="c-a">—</span></div>
+        <div class="track"><div class="fill a" id="cf-a"></div></div>
+      </div>
+      <div class="bar">
+        <div class="bl"><span class="name" id="c-b-name">Voie B — Garder la main</span><span class="val" id="c-b">—</span></div>
+        <div class="track"><div class="fill b" id="cf-b"></div></div>
+      </div>
+    </div>
+
+    <div class="honesty rv">
+      <svg width="17" height="17" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="7.5" stroke="#9BB4AF" stroke-width="1.4"/><path d="M9 8v4.2M9 5.3v.2" stroke="#9BB4AF" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <span>Honnêteté du calcul : ces montants n'incluent pas votre temps de gestion. Côté agence, vous tenez l'opérationnel — le ménage reste refacturé au voyageur dans les deux cas, donc neutre sur le net ; ce qui change, c'est votre temps et la relation voyageur, que vous gardez. Hypothèses de marché argumentées, non un revenu garanti.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== AGENCE — DÉTAIL ===================== -->
+<section class="agence">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow"><svg width="16" height="13" viewBox="0 0 16 13" aria-hidden="true"><path d="M2 11 L8 3 L14 11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>La voie agence, en détail</div>
+      <h2>Garder la main ne veut pas dire tout faire seule.</h2>
+      <p class="lede">On pose le moteur une fois, puis on le maintient calibré — pendant que vous restez aux commandes.</p>
+    </div>
+
+    <div class="ag-grid">
+      <div class="ag-card rv">
+        <div class="price">890 € · une fois · livré sous 7 jours</div>
+        <h3>Le Lancement</h3>
+        <p class="desc">On crée votre annonce de zéro, on la paramètre intégralement, on pose la stratégie tarifaire et on diffuse sur Airbnb + une plateforme au choix.</p>
+        <ul class="feat">
+          <li><span class="dot"><svg viewBox="0 0 18 18" fill="none"><path d="M3.5 9.2 L7.3 13 L14.5 5.2" stroke="#15756C" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Création &amp; rédaction de l'annonce (titre, descriptif, ordre des photos)</span></li>
+          <li><span class="dot"><svg viewBox="0 0 18 18" fill="none"><path d="M3.5 9.2 L7.3 13 L14.5 5.2" stroke="#15756C" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Brief photo + paramétrage complet (équipements, règles, conformité)</span></li>
+          <li><span class="dot"><svg viewBox="0 0 18 18" fill="none"><path d="M3.5 9.2 L7.3 13 L14.5 5.2" stroke="#15756C" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Stratégie tarifaire (grille saisonnière + pricing événementiel d'août)</span></li>
+          <li><span class="dot"><svg viewBox="0 0 18 18" fill="none"><path d="M3.5 9.2 L7.3 13 L14.5 5.2" stroke="#15756C" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Messages voyageurs pré-écrits &amp; configurés (votre automatisation les envoie)</span></li>
+          <li><span class="dot"><svg viewBox="0 0 18 18" fill="none"><path d="M3.5 9.2 L7.3 13 L14.5 5.2" stroke="#15756C" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Annonce conforme, prête à publier — <b>garantie</b></span></li>
+        </ul>
+      </div>
+
+      <div class="ag-card rv">
+        <div class="price">169 € / mois · sans engagement après 3 mois</div>
+        <h3>L'Abonnement Performance</h3>
+        <p class="desc">Le moteur reste vivant. Trois piliers, pour que la stratégie ne se périme pas quand le marché bouge.</p>
+        <div class="pillars">
+          <div class="pillar"><div class="pt"><span class="num">01</span>Revenue management continu</div><div class="pd">Monitoring quotidien, ajustement hebdomadaire des prix, de la disponibilité et des règles d'occupation — ce que font les hôtels.</div></div>
+          <div class="pillar"><div class="pt"><span class="num">02</span>Entretien du contenu</div><div class="pd">Réécriture saisonnière de l'annonce, 2×/an, pour coller aux deux grands pivots de demande.</div></div>
+          <div class="pillar"><div class="pt"><span class="num">03</span>Reporting mensuel</div><div class="pd">La preuve chiffrée du gain, chaque mois.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="frontiere rv">
+      <div class="fl">La frontière</div>
+      <div class="ft">
+        <h3>Ce qu'on ne fait pas — volontairement.</h3>
+        <p>Pas de check-in, pas de ménage, pas de messages envoyés à votre place. On écrit et configure vos messages ; votre automatisation les envoie. <span class="keep">Vous gardez la relation et la main ; nous tenons le moteur.</span> C'est précisément ce qui sépare une agence d'une conciergerie — et ce qui vous laisse la marge.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONCIERGERIE, HONNÊTE ===================== -->
+<section class="deleg">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow" style="color:var(--muted-2)"><svg width="16" height="13" viewBox="0 0 16 13" aria-hidden="true"><path d="M2 11 L8 3 L14 11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>L'autre voie, sans détour</div>
+      <h2 style="color:var(--neutral-ink)">Et si déléguer reste la bonne réponse pour vous ?</h2>
+    </div>
+    <div class="deleg-card rv">
+      <h3>Alors la conciergerie est faite pour vous, et on vous le dira.</h3>
+      <p>Si votre temps a plus de valeur que la marge récupérée, déléguer est le choix juste. Vous confiez les clés, tout est géré — mise en marché, accueil 7j/7, ménage hôtelier, maintenance, gestion des litiges, reporting — et vous ne pensez à rien. Ce service se facture en commission (~17–18 %), prélevée sur chaque réservation. C'est le prix de la sérénité totale, et pour beaucoup de propriétaires, il les vaut largement.</p>
+      <p>L'agence n'est pas « mieux » que la conciergerie : c'est une réponse différente, pour un propriétaire différent. Vous avez les deux sur la table — à vous de dire lequel vous ressemble.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DÉCIDER ===================== -->
+<section class="decide">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow"><svg width="16" height="13" viewBox="0 0 16 13" aria-hidden="true"><path d="M2 11 L8 3 L14 11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Pour trancher</div>
+      <h2>Trois questions, et c'est clair.</h2>
+    </div>
+    <div class="rv">
+      <div class="qhdr">
+        <div class="h">Demandez-vous…</div>
+        <div class="h">Plutôt Voie A</div>
+        <div class="h bb">Plutôt Voie B</div>
+      </div>
+      <div class="qrows">
+        <div class="qrow">
+          <div class="q">Combien de temps voulez-vous y consacrer ?</div>
+          <div class="opt a"><span class="tagm">Voie A</span><span>Aucun — zéro charge mentale.</span></div>
+          <div class="opt b"><span class="tagm">Voie B</span><span>Un peu — je veux rester impliquée.</span></div>
+        </div>
+        <div class="qrow">
+          <div class="q">La relation voyageur, vous la voulez à qui ?</div>
+          <div class="opt a"><span class="tagm">Voie A</span><span>À déléguer entièrement.</span></div>
+          <div class="opt b"><span class="tagm">Voie B</span><span>À garder — c'est mon bien.</span></div>
+        </div>
+        <div class="qrow">
+          <div class="q">La marge récupérée change-t-elle la donne ?</div>
+          <div class="opt a"><span class="tagm">Voie A</span><span>Non, je paie pour la tranquillité.</span></div>
+          <div class="opt b"><span class="tagm">Voie B</span><span>Oui, je veux la garder.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA ===================== -->
+<section class="cta">
+  <div class="wrap cta-inner">
+    <div class="rv">
+      <div class="eyebrow" style="color:var(--petrol-soft)"><svg width="16" height="13" viewBox="0 0 16 13" aria-hidden="true"><path d="M2 11 L8 3 L14 11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>La suite</div>
+      <h2>La première marche est franchie.</h2>
+      <p class="cl">L'analyse, vous l'avez. Si vous choisissez de garder la main, l'étape suivante est le Lancement : sous 7 jours, votre annonce est en ligne, paramétrée et pilotée — prête pour le pic d'août.</p>
+      <div class="next"><span class="nstep">Étape suivante →</span> Le Lancement · 890 € · sous 7 jours</div>
+    </div>
+    <div class="contact rv">
+      <div class="cn">Matisse Chahine Fleischman</div>
+      <div style="font-family:'Space Mono',monospace;font-size:12px;color:var(--on-dark-muted);margin-top:4px;letter-spacing:0.04em;">Fondateur · Akméa</div>
+      <div class="cr">
+        <span>✉ <a href="mailto:chahine@akmea.fr">chahine@akmea.fr</a></span>
+        <span>☎ 06 51 66 94 85</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div class="wordmark"><svg class="peak" style="width:24px;height:19px" viewBox="0 0 30 24" aria-hidden="true"><path d="M3 21 L15 4 L27 21" style="stroke:var(--clay)"/></svg><span class="fw">AKMÉA</span></div>
+    <div class="fn">Document de travail préparé pour Sandy Tavares — Saint-Arnoult, juin 2026. Projection fondée sur des comparables réels et des hypothèses de marché argumentées ; elle ne constitue pas un revenu garanti. Akméa est une marque de l'entité Eukleia.</div>
+  </div>
+</footer>
+
+<script>
+/* =========================================================
+   DONNÉES — éditable pour réutiliser sur un autre prospect
+   ========================================================= */
+const PROSPECT = {
+  prenom: "Sandy",
+  feePlateforme: 0.155,
+  // monthly brut (scénario probable) pour la courbe-signature du hero
+  courbe: [
+    {m:"Mai", v:1568},{m:"Juin", v:2125},{m:"Juil", v:3174},{m:"Août", v:3848},
+    {m:"Sept", v:1888},{m:"Oct", v:1176},{m:"Nov", v:810},{m:"Déc", v:1144},
+    {m:"Jan", v:704},{m:"Fév", v:855},{m:"Mar", v:828},{m:"Avr", v:1484}
+  ],
+  apexIndex: 3, // Août
+  scenarios: {
+    plancher: { nom:"Prudent",   brut:13862, netPlat:11713, commConc:1962, nuits:131, occ:36, adr:106 },
+    central:  { nom:"Probable",  brut:19604, netPlat:16565, commConc:2933, nuits:168, occ:46, adr:117 },
+    plafond:  { nom:"Favorable", brut:26636, netPlat:22507, commConc:4120, nuits:199, occ:55, adr:134 }
+  },
+  akmea: { lancement:890, estimationIncluse:390, rechargeAnnuelle:190, abonnementMensuel:169, moisOffert:1 }
+};
+
+/* ---------- helpers ---------- */
+const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const fmt = n => Math.round(n).toLocaleString('fr-FR').replace(/\u202f/g,'\u00a0') + '\u00a0€';
+const fmtK = n => (Math.round(n/100)/10).toLocaleString('fr-FR') + 'k€';
+
+/* ---------- HERO : courbe + stats ---------- */
+(function buildCurve(){
+  const svg = document.getElementById('curve');
+  const W=1000, H=250, padL=8, padR=8, padT=24, padB=42;
+  const data = PROSPECT.courbe;
+  const max = Math.max(...data.map(d=>d.v))*1.08;
+  const min = 0;
+  const xs = i => padL + i*( (W-padL-padR)/(data.length-1) );
+  const ys = v => padT + (1-(v-min)/(max-min))*(H-padT-padB);
+
+  // smooth path (catmull-rom -> bezier)
+  const pts = data.map((d,i)=>({x:xs(i),y:ys(d.v)}));
+  let dPath = `M ${pts[0].x} ${pts[0].y}`;
+  for(let i=0;i<pts.length-1;i++){
+    const p0=pts[i-1]||pts[i], p1=pts[i], p2=pts[i+1], p3=pts[i+2]||p2;
+    const c1x=p1.x+(p2.x-p0.x)/6, c1y=p1.y+(p2.y-p0.y)/6;
+    const c2x=p2.x-(p3.x-p1.x)/6, c2y=p2.y-(p3.y-p1.y)/6;
+    dPath += ` C ${c1x} ${c1y}, ${c2x} ${c2y}, ${p2.x} ${p2.y}`;
+  }
+  const area = dPath + ` L ${pts[pts.length-1].x} ${H-padB} L ${pts[0].x} ${H-padB} Z`;
+  const ai = PROSPECT.apexIndex;
+
+  let ticks='';
+  data.forEach((d,i)=>{
+    const em = (i===ai);
+    ticks += `<text x="${xs(i)}" y="${H-16}" text-anchor="middle" font-family="Space Mono, monospace" font-size="13" fill="${em?'#E08566':'#7f9b96'}" font-weight="${em?'700':'400'}">${d.m}</text>`;
+  });
+
+  svg.innerHTML = `
+    <defs>
+      <linearGradient id="ag" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#15756C" stop-opacity="0.34"/>
+        <stop offset="100%" stop-color="#15756C" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <path d="${area}" fill="url(#ag)"/>
+    <path d="${dPath}" fill="none" stroke="#4FC9BD" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" id="curveline"/>
+    <line x1="${xs(ai)}" y1="${ys(data[ai].v)}" x2="${xs(ai)}" y2="${H-padB}" stroke="#E08566" stroke-width="1.2" stroke-dasharray="3 4" opacity="0.6"/>
+    <circle cx="${xs(ai)}" cy="${ys(data[ai].v)}" r="6.5" fill="#E08566" stroke="#0A2322" stroke-width="2.5" id="apexdot"/>
+    ${ticks}
+  `;
+
+  if(!reduced){
+    const line = document.getElementById('curveline');
+    const len = line.getTotalLength();
+    line.style.strokeDasharray = len; line.style.strokeDashoffset = len;
+    line.getBoundingClientRect();
+    line.style.transition = 'stroke-dashoffset 1.5s cubic-bezier(.4,.0,.2,1)';
+    const dot = document.getElementById('apexdot');
+    dot.style.opacity='0';dot.style.transition='opacity .5s ease 1.2s';
+    requestAnimationFrame(()=>{ line.style.strokeDashoffset='0'; dot.style.opacity='1'; });
+  }
+
+  // stats (central)
+  const c = PROSPECT.scenarios.central;
+  document.getElementById('st-brut').textContent = fmt(c.brut);
+  document.getElementById('st-occ').textContent = c.occ + '\u00a0%';
+  document.getElementById('st-adr').textContent = c.adr + '\u00a0€';
+  document.getElementById('st-revpar').textContent = Math.round(c.brut/365) + '\u00a0€';
+})();
+
+/* ---------- COMPARATEUR ---------- */
+let curScen='central', curMode='abonnement';
+const A=PROSPECT.akmea;
+
+const netDeleguer = s => s.netPlat - s.commConc;
+const netB_steady = (s,mode) => mode==='autonome'
+    ? s.netPlat - A.rechargeAnnuelle
+    : s.netPlat - A.abonnementMensuel*12;
+const netB_Y1 = (s,mode) => {
+  const base = s.netPlat - A.lancement;
+  return mode==='autonome' ? base - A.rechargeAnnuelle
+                           : base - A.abonnementMensuel*(12 - A.moisOffert);
+};
+const cumul3_A = s => netDeleguer(s)*3;
+const cumul3_B = (s,mode) => netB_Y1(s,mode) + netB_steady(s,mode)*2;
+
+const modeDesc = {
+  autonome: "Vous pilotez les prix vous-même. Recharge tarifaire annuelle optionnelle (~190 €) pour rester à jour.",
+  abonnement: "On fait le revenue management à votre place : prix ajustés chaque semaine, contenu réécrit 2×/an, reporting mensuel. 1ᵉʳ mois offert."
+};
+
+/* simple count-up */
+function animateNum(el, to){
+  if(reduced){ el.textContent = fmt(to); return; }
+  const from = parseFloat(el.dataset.cur||'0');
+  el.dataset.cur = to;
+  const dur=480, t0=performance.now();
+  function step(t){
+    const p=Math.min((t-t0)/dur,1);
+    const e=1-Math.pow(1-p,3);
+    el.textContent = fmt(from+(to-from)*e);
+    if(p<1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+function render(){
+  const s = PROSPECT.scenarios[curScen];
+
+  // scen meta
+  document.getElementById('scen-meta').innerHTML =
+    `Brut <b>${fmt(s.brut)}</b> · occ. <b>${s.occ}\u00a0%</b> · ${s.nuits} nuits`;
+
+  // Voie A
+  animateNum(document.getElementById('a-net'), netDeleguer(s));
+  document.getElementById('a-comm').textContent = fmt(s.commConc);
+
+  // Voie B
+  const steady = netB_steady(s,curMode);
+  const y1 = netB_Y1(s,curMode);
+  animateNum(document.getElementById('b-net'), steady);
+  document.getElementById('b-net-tag').textContent = '· en rythme de croisière';
+  document.getElementById('b-y1').innerHTML = `Année 1 (lancement inclus) : <b>${fmt(y1)}</b>`;
+  document.getElementById('mode-desc').textContent = modeDesc[curMode];
+
+  // delta
+  const d = steady - netDeleguer(s);
+  const dv = document.getElementById('delta-v');
+  const dt = document.getElementById('delta-t');
+  if(d>=0){ dv.textContent='+'+fmt(d); dt.textContent='de plus pour vous, chaque année, vs déléguer.'; }
+  else { dv.textContent=fmt(d); dt.textContent='de moins / an — mais vous gardez la main et la relation.'; }
+
+  // 3 ans
+  const ca=cumul3_A(s), cb=cumul3_B(s,curMode);
+  const cmax=Math.max(ca,cb);
+  document.getElementById('c-a').textContent=fmt(ca);
+  document.getElementById('c-b').textContent=fmt(cb);
+  document.getElementById('c-b-name').textContent='Voie B — Garder la main · '+(curMode==='autonome'?'Autonome':'Abonnement');
+  requestAnimationFrame(()=>{
+    document.getElementById('cf-a').style.width=(ca/cmax*100)+'%';
+    document.getElementById('cf-b').style.width=(cb/cmax*100)+'%';
+  });
+}
+
+document.querySelectorAll('[data-scen]').forEach(b=>{
+  b.addEventListener('click',()=>{
+    curScen=b.dataset.scen;
+    document.querySelectorAll('[data-scen]').forEach(x=>x.setAttribute('aria-pressed', x===b?'true':'false'));
+    render();
+  });
+});
+document.querySelectorAll('[data-mode]').forEach(b=>{
+  b.addEventListener('click',()=>{
+    curMode=b.dataset.mode;
+    document.querySelectorAll('[data-mode]').forEach(x=>x.setAttribute('aria-pressed', x===b?'true':'false'));
+    render();
+  });
+});
+render();
+
+/* ---------- scroll reveal ---------- */
+if(!reduced && 'IntersectionObserver' in window){
+  const io=new IntersectionObserver((es)=>{
+    es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+} else {
+  document.querySelectorAll('.rv').forEach(el=>el.classList.add('in'));
+}
+</script>
+</body>
+</html>
